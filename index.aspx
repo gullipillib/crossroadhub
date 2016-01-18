@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Debug="true"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Debug="true" %>
 
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="System.Data.OleDb" %>
@@ -182,9 +182,9 @@
         <asp:Label ID="Label18" runat="server" Font-Size="10pt" ForeColor="Black" Style="z-index: 1; left: 0px; top: 587px; position: absolute; width: 238px" Text="Cross Road Hub @ 2016"></asp:Label>
         <asp:Label ID="Label19" runat="server" Font-Size="10pt" ForeColor="Black" Style="z-index: 1; left: 960px; top: 590px; position: absolute; width: 270px" Text="Contact : crossroadhub@hotmail.com"></asp:Label>
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:crossroadhubConnectionString %>"
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\crossroadhub.mdf;Integrated Security=True;Connect Timeout=30"
             SelectCommand="SELECT * FROM [UserTable]" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:crossroadhubConnectionString %>"
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\crossroadhub.mdf;Integrated Security=True;Connect Timeout=30"
             SelectCommand="SELECT * FROM [UserCounterTable]" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
 
     </form>

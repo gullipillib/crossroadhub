@@ -44,21 +44,6 @@
     protected void Button1_Click(object sender, EventArgs e)
     {
 
-        SqlDataSource1.SelectCommand = "SELECT UserId, Email, Password FROM UserTable where Email = '" + TextBox1.Text + "'";
-        DataView dv = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
-        DataTable dt = new DataTable();
-        dt = dv.ToTable();
-
-        if (dt.Rows.Count != 0)
-        {
-
-            email = dt.Rows[0].Field<string>("Email"); //usethis to get field value
-            password = dt.Rows[0].Field<string>("Password"); //usethis to get field value
-            Session["usercountervalue"] = dt.Rows[0].Field<string>("UserId"); //usethis to get field value
-        }
-
-        //SqlDataSource1.InsertCommand = "INSERT INTO UserTable(UserId, UserName, SurName, Email, Password, Verified, Active, Address, Phone, LoggedIn, Friends, Imagefile,BirthDay) Values ('" + usercountervalue + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox5.Text + "',   '" + TextBox7.Text + "', 'no', 'yes', 'no' , ' ' , ' ' ,  'yes', ' ',    '" + TextBox8.Text + "' )";
-        //SqlDataSource1.Insert();
          
     }
 
@@ -126,9 +111,9 @@
             BackColor="Transparent" BorderStyle="None" />
 
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:crossroadhubConnectionString %>"
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\crossroadhub.mdf;Integrated Security=True;Connect Timeout=30"
             SelectCommand="SELECT UserName, SurName, Imagefile FROM [UserTable] where UserId = '1'" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:crossroadhubConnectionString %>"
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\crossroadhub.mdf;Integrated Security=True;Connect Timeout=30"
             SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable]"></asp:SqlDataSource>
         
         
