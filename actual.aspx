@@ -111,10 +111,11 @@
             BackColor="Transparent" BorderStyle="None" />
 
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\crossroadhub.mdf;Integrated Security=True;Connect Timeout=30"
-            SelectCommand="SELECT UserName, SurName, Imagefile FROM [UserTable] where UserId = '1'" ProviderName="System.Data.SqlClient"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\crossroadhub.mdf;Integrated Security=True;Connect Timeout=30"
-            SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:crossroadhubConnectionString %>"
+            SelectCommand="SELECT * FROM [UserDataTable]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:crossroadhubConnectionString %>"
+            SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable]" 
+            ProviderName="<%$ ConnectionStrings:crossroadhubConnectionString.ProviderName %>"></asp:SqlDataSource>
         
         
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 630px; top: 4px; position: absolute; width: 360px; " 
