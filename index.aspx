@@ -183,9 +183,9 @@
         <asp:Label ID="Label19" runat="server" Font-Size="10pt" ForeColor="Black" Style="z-index: 1; left: 960px; top: 590px; position: absolute; width: 270px" Text="Contact : crossroadhub@hotmail.com"></asp:Label>
 
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
-            SelectCommand="SELECT * FROM [UserTable]" ProviderName="<%$ ConnectionStrings:crossroadhubConnectionString.ProviderName %>"></asp:SqlDataSource>
+            SelectCommand="SELECT * FROM [UserTable]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
-            SelectCommand="SELECT * FROM [UserCounterTable]" ProviderName="<%$ ConnectionStrings:crossroadhubConnectionString.ProviderName %>"></asp:SqlDataSource>
+            SelectCommand="SELECT * FROM [UserCounterTable]"></asp:SqlDataSource>
 
     </form>
 </body>
