@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <script runat="server">
 
-    string email = "";
+    string ImageFileUrl = "";
     string password = "";
     string usercountervalue = "";
     string UserId = "";
@@ -21,21 +21,29 @@
 
         if (Page.IsPostBack == false)
         {
-
+           
             if (Session["usercountervalue"] == null)
             {
                 Response.Redirect("index.aspx");
             }
-            SqlDataSource1.SelectCommand =  "SELECT UserName, SurName, Imagefile FROM [UserTable] where UserId = '"+  Session["usercountervalue"] + "'";
-            
+            SqlDataSource1.SelectCommand = "SELECT UserName, SurName, Imagefile FROM [UserTable] where UserId = '" + Session["usercountervalue"] + "'";
+            DataView dv = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            DataTable dt = new DataTable();
+            dt = dv.ToTable();
+
+            if (dt.Rows.Count != 0)
+            {
+
+                ImageFileUrl = dt.Rows[0].Field<string>("ImageFile"); //usethis to get field value       
+                Image3.ImageUrl = ResolveUrl(ImageFileUrl);
+            }
         }
-        
     }
 
 
     protected void Button16_Click(object sender, EventArgs e)
     {
-        SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable([UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter]) Values ('" + Session["usercountervalue"] + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "')";
+        SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter) Values ('" + Session["usercountervalue"] + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "')";
         SqlDataSource2.Insert();
                 
     }
@@ -111,8 +119,9 @@
             BackColor="Transparent" BorderStyle="None" />
 
 
+       
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
-            SelectCommand="SELECT * FROM [UserDataTable]"></asp:SqlDataSource>
+            SelectCommand="SELECT * FROM [UserTable]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable]"></asp:SqlDataSource>
         
@@ -120,25 +129,28 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 630px; top: 4px; position: absolute; width: 360px; " 
             BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" Height="35px" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
-                <asp:ImageField DataImageUrlField="Imagefile">
-                    <ControlStyle Height="30px" Width="30px" />
-                </asp:ImageField>
-                <asp:BoundField DataField="UserName" SortExpression="UserName" />
-                <asp:BoundField DataField="SurName" SortExpression="SurName" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Imagefile") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
+                <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
+                <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
             </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
 
          <asp:Panel ID="Panel4" runat="server" BackColor="Transparent" style="z-index: 1; left: 18px; top: 68px; position: absolute; width: 125px; height: 107px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None">
+
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 0px; top: 3px; position: absolute; width: 127px; height: 61px;" 
             BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
-                <asp:ImageField DataImageUrlField="Imagefile">
-                    <ControlStyle Height="30px" Width="30px" />
-                </asp:ImageField>
-                <asp:BoundField DataField="UserName" SortExpression="UserName" />
-                <asp:BoundField DataField="SurName" SortExpression="SurName" />
+               
+                <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
+                <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
+                <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
             </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
@@ -147,15 +159,27 @@
    
              </asp:Panel>
 
+            
+        <asp:Image ID="Image3" runat="server" ImageUrl="~/images/logo.jpg" 
+            style="z-index: 1; left: 458px; top: 338px; position: absolute; height: 73px; width: 135px;" BorderStyle="Solid" />
+     
+           
+
         <asp:Panel ID="Panel5" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None">
 
-             <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 0px; top: 10px; position: absolute; width: 30px; height: 30px;" 
+             <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 11px; top: 10px; position: absolute; width: 30px; height: 30px;" 
             BackColor="Transparent"  GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
-                <asp:ImageField DataImageUrlField="Imagefile">
-                    <ControlStyle Height="30px" Width="30px" />
-                </asp:ImageField>
+                <asp:TemplateField ShowHeader="False">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Image ID="Image1" ImageUrl="ImageFile" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" SortExpression="Imagefile" ShowHeader="False" Visible="False" />
               </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
