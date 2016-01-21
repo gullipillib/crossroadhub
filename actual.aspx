@@ -35,7 +35,7 @@
             {
 
                 ImageFileUrl = dt.Rows[0].Field<string>("ImageFile"); //usethis to get field value       
-                Image3.ImageUrl = ResolveUrl(ImageFileUrl);
+                
             }
         }
     }
@@ -66,7 +66,6 @@
 
 <body>
     <form id="form1" runat="server">
-
         <asp:Label ID="Label1" runat="server" BackColor="#000099" Style="position: absolute; height: 49px; width: 1459px; top: -1px; left: 14px; z-index: -1;"></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server" Style="z-index: 1; left: 107px; top: 9px; position: absolute; height: 27px; width:369px; " ToolTip="search friends"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Style="cursor: pointer; top: 13px; left: 494px; position: absolute; height: 26px; width: 56px" Text="Search" BackColor="#0066FF" ForeColor="White" 
@@ -75,9 +74,11 @@
         <asp:Image ID="Image2" runat="server" Style="height:30px; width:30px; top: 9px; left: 66px; position: absolute; " ImageUrl="images/logo.jpg" />
         
         <asp:Panel ID="Panel1" runat="server" BackColor="#99CCFF" style="z-index: 1; left: 10px; top: 57px; position: absolute; width: 1446px; height: 729px" Visible="true" Direction="LeftToRight">
+           
+            
         </asp:Panel>
 
-        <asp:Panel ID="Panel2" runat="server" BackColor="Transparent" style="z-index: 1; left: 18px; top: 184px; position: absolute; width: 125px; height: 220px" Visible="true" Direction="LeftToRight" 
+        <asp:Panel ID="Panel2" runat="server" BackColor="Transparent" style="z-index: 30; left: 18px; top: 184px; position: absolute; width: 125px; height: 220px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None">
             
                  <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 27px; position: absolute" 
@@ -121,17 +122,19 @@
 
        
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
-            SelectCommand="SELECT * FROM [UserTable]"></asp:SqlDataSource>
+            SelectCommand="SELECT [Imagefile], [UserName], [SurName] FROM [UserTable]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable]"></asp:SqlDataSource>
         
         
+        
+
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 630px; top: 4px; position: absolute; width: 360px; " 
             BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" Height="35px" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Imagefile") %>' />
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
@@ -148,9 +151,15 @@
             BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
                
+                 <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+               
                 <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
                 <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
-                <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
+            <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
             </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
@@ -160,10 +169,6 @@
              </asp:Panel>
 
             
-        <asp:Image ID="Image3" runat="server" ImageUrl="~/images/logo.jpg" 
-            style="z-index: 1; left: 458px; top: 338px; position: absolute; height: 73px; width: 135px;" BorderStyle="Solid" />
-     
-           
 
         <asp:Panel ID="Panel5" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None">
@@ -171,15 +176,14 @@
              <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 11px; top: 10px; position: absolute; width: 30px; height: 30px;" 
             BackColor="Transparent"  GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
-                <asp:TemplateField ShowHeader="False">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                    </EditItemTemplate>
+                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Image ID="Image1" ImageUrl="ImageFile" runat="server" />
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" SortExpression="Imagefile" ShowHeader="False" Visible="False" />
+                 <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
+                <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
+                <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
               </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
