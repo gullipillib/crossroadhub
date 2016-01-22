@@ -11,14 +11,12 @@
 <script runat="server">
 
     string ImageFileUrl = "";
-    string password = "";
-    string usercountervalue = "";
     string UserId = "";
 
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        UserId = Session["usercountervalue"].ToString();
         if (Page.IsPostBack == false)
         {
            
@@ -43,7 +41,7 @@
 
     protected void Button16_Click(object sender, EventArgs e)
     {
-        SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter) Values ('" + Session["usercountervalue"] + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "')";
+        SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter, Category) Values ('" + UserId + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "', '" + DropDownList1.SelectedValue  + "')";
         SqlDataSource2.Insert();
                 
     }
@@ -124,7 +122,7 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             SelectCommand="SELECT [Imagefile], [UserName], [SurName] FROM [UserTable]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
-            SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable]"></asp:SqlDataSource>
+            SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable] where UserId='1'"></asp:SqlDataSource>
         
         
         
@@ -182,8 +180,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                  <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
-                <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
-                <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
+                
               </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
@@ -195,13 +192,108 @@
         <asp:TextBox ID="TextBox3" runat="server" Style="z-index: 1; left: 117px; top: 69px; position: absolute; height: 27px; width:369px; " ToolTip="The Url to your Photo on the internet or youtube or onedrive"></asp:TextBox>
             <asp:Button ID="Button17" runat="server" Text="Video" Font-Names="Arial" Font-Size="9" ForeColor="#999999" style="z-index: 1; left: 55px; top: 122px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" ToolTip="Video" />
-        <asp:TextBox ID="TextBox4" runat="server" Style="z-index: 1; left: 117px; top: 114px; position: absolute; height: 27px; width:369px; " 
+        <asp:TextBox ID="TextBox4" runat="server" Style="z-index: 1; left: 117px; top: 114px; position: absolute; height: 27px; width:343px; " 
                  ToolTip="The Url to your Photo on the internet or youtube or onedrive"></asp:TextBox>
         <asp:Label ID="Label2" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 122px; left: 24px; z-index: 0;" Font-Names="Arial">֍</asp:Label>
             <asp:Label ID="Label3" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 82px; left: 27px; z-index: 0;" Font-Names="Arial">௹</asp:Label>
         
-        
+            <asp:DropDownList ID="DropDownList1" runat="server" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1; left: 497px; top: 126px; position: absolute">
+                <asp:ListItem>General</asp:ListItem>
+                <asp:ListItem>Prayers</asp:ListItem>
+                <asp:ListItem>Testimonials</asp:ListItem>
+                <asp:ListItem>Chruch</asp:ListItem>
+                <asp:ListItem>Songs</asp:ListItem>
+                <asp:ListItem>Worship</asp:ListItem>
+                <asp:ListItem>Events</asp:ListItem>
+             </asp:DropDownList>
        </asp:Panel>
+
+         <asp:Panel ID="PanelGeneral" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 238px; position: absolute; width: 676px; height: 543px" Visible="true" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical">
+             
+                <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 11px; top: 10px; position: absolute; width: 30px; height: 30px;" 
+            BackColor="Transparent"  GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
+            <Columns>
+                 <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                 <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
+                
+              </Columns>
+            <RowStyle Height="5px" />
+        </asp:GridView>
+
+             <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 51px; position: absolute; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
+            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0">
+            <Columns>
+                 
+                 <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("PostId") %>' style="z-index: 1; left: 11px; top: 1px; position: absolute; height: 95px; width: 646px"></asp:Label>
+                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("PostMatter") %>' style="z-index: 1; left: 11px; top: 51px; position: absolute; height: 95px; width: 646px"></asp:Label>
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("ImageId"))) %>' style="z-index: 1; left: 13px; top: 341px; position: absolute" />
+                       
+                        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,16,0"
+width="320" height="400" style="z-index: 320; left: 13px; top: 101px; position: absolute; height: 184px; width: 646px" >
+<param name="movie" value="video-filename.swf">
+<param name="quality" value="high">
+<param name="play" value="true">
+<param name="LOOP" value="false">
+<embed src='<%# new Uri(Convert.ToString(Eval("VideoId"))) %>' width="320" height="400" play="true" loop="false" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+type="application/x-shockwave-flash">
+</embed>
+</object> 
+
+                   </ItemTemplate>
+                </asp:TemplateField>
+                 
+              </Columns>
+            
+        </asp:GridView>
+
+   
+
+             </asp:Panel>
+        
+        <asp:Panel ID="PanelPrayers" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical">
+
+             </asp:Panel>
+        
+        <asp:Panel ID="PanelTestimonials" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical">
+
+             </asp:Panel>
+        
+        <asp:Panel ID="PanelChruch" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical">
+
+             </asp:Panel>
+
+        <asp:Panel ID="PanelSongs" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical">
+
+             </asp:Panel>
+
+        <asp:Panel ID="PanelWorship" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical">
+
+             </asp:Panel>
+        
+        <asp:Panel ID="PanelEvents" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" ScrollBars="Vertical" >
+
+             </asp:Panel>
+
+        <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 273px; height: 280px" Visible="True" Direction="LeftToRight" 
+            BorderStyle="None" >
+
+             </asp:Panel>
+        
+        
         
     </form>
 </body>
