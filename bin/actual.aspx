@@ -208,7 +208,7 @@
              </asp:DropDownList>
        </asp:Panel>
 
-         <asp:Panel ID="PanelGeneral" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 238px; position: absolute; width: 676px; height: 543px" Visible="true" Direction="LeftToRight" 
+         <asp:Panel ID="PanelGeneral" runat="server" BackColor="White" style="overflow:auto; z-index: 1; left: 158px; top: 238px; position: absolute; width: 676px; height: 543px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None" ScrollBars="Vertical">
              
                 <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 11px; top: 10px; position: absolute; width: 30px; height: 30px;" 
@@ -226,26 +226,21 @@
         </asp:GridView>
 
              <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 51px; position: absolute; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
-            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0">
+            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView">
             <Columns>
                  
-                 <asp:TemplateField>
+                 <asp:ImageField DataImageUrlField="ImageId" ShowHeader="False">
+                 </asp:ImageField>
+                 
+                 <asp:BoundField DataField="Dated" HeaderText="Dated" ShowHeader="False" SortExpression="Dated" />
+                 
+                 <asp:BoundField DataField="PostMatter" HeaderText="PostMatter" ShowHeader="False" SortExpression="PostMatter" />
+                 
+                 <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("PostId") %>' style="z-index: 1; left: 11px; top: 1px; position: absolute; height: 95px; width: 646px"></asp:Label>
-                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("PostMatter") %>' style="z-index: 1; left: 11px; top: 51px; position: absolute; height: 95px; width: 646px"></asp:Label>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("ImageId"))) %>' style="z-index: 1; left: 13px; top: 341px; position: absolute" />
+                      
                        
-                        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,16,0"
-width="320" height="400" style="z-index: 320; left: 13px; top: 101px; position: absolute; height: 184px; width: 646px" >
-<param name="movie" value="video-filename.swf">
-<param name="quality" value="high">
-<param name="play" value="true">
-<param name="LOOP" value="false">
-<embed src='<%# new Uri(Convert.ToString(Eval("VideoId"))) %>' width="320" height="400" play="true" loop="false" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
-type="application/x-shockwave-flash">
-</embed>
-</object> 
+                        <iframe class="youtube-player" id="player" type="text/html" src=src='<%# new Uri(Convert.ToString(Eval("VideoId"))) %>' frameborder="0" style="z-index: 320; left: 350px; top: 500px; position: absolute; height: 240px; width: 320px; border:medium;"></iframe>
 
                    </ItemTemplate>
                 </asp:TemplateField>
@@ -254,7 +249,7 @@ type="application/x-shockwave-flash">
             
         </asp:GridView>
 
-   
+           
 
              </asp:Panel>
         
