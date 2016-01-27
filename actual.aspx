@@ -239,16 +239,22 @@
                  <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
                       
+                        <video width="320" height="240"   controls="controls">
+  <source src='<%# new Uri(Convert.ToString(Eval("VideoId"))).AbsoluteUri %>' type="video/mp4" >
+ 
+</video>
                        
-                        <iframe class="youtube-player" id="player" type="text/html" src=src='<%# new Uri(Convert.ToString(Eval("VideoId"))) %>' frameborder="0" style="z-index: 320; left: 350px; top: 500px; position: absolute; height: 240px; width: 320px; border:medium;"></iframe>
-
+                        
                    </ItemTemplate>
                 </asp:TemplateField>
+                 
+                
                  
               </Columns>
             
         </asp:GridView>
 
+           
            
 
              </asp:Panel>
