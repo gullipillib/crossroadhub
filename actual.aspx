@@ -238,13 +238,15 @@
                  
                  <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                      
-                        <video width="320" height="240"   controls="controls">
-  <source src='<%# new Uri(Convert.ToString(Eval("VideoId"))).AbsoluteUri %>' type="video/mp4" >
+                     
+                        <iframe src='<%# new Uri(Eval("VideoId").ToString()).AbsoluteUri %>'  width="320" " height="179" 
+                            style="z-index: 100; left: 400px; top: 500px; position: absolute "></iframe>
+                         
+                       <video width="320" height="179"   controls="controls">
+  <source src='<%# new Uri(Convert.ToString(Eval("VideoId"))).AbsoluteUri %>' type="video/mp4" style="z-index: -100; left: 400px; top: 500px; position: absolute ">
  
 </video>
-                       
-                        
+                                    
                    </ItemTemplate>
                 </asp:TemplateField>
                  
@@ -255,7 +257,9 @@
         </asp:GridView>
 
            
-           
+                     
+                
+                     
 
              </asp:Panel>
         
