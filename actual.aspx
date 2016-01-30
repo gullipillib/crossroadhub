@@ -53,7 +53,8 @@
          
     }
 
-     
+
+   
 </script>
 
     
@@ -132,7 +133,11 @@
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
+                    
+                            <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
+                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                        
+                        
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
@@ -151,7 +156,9 @@
                
                  <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
+                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                        
                     </ItemTemplate>
                 </asp:TemplateField>
                
@@ -176,7 +183,9 @@
             <Columns>
                  <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
+                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                        
                     </ItemTemplate>
                 </asp:TemplateField>
                  <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
@@ -216,17 +225,19 @@
             <Columns>
                  <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# new Uri(Convert.ToString(Eval("Imagefile"))) %>' />
+                          <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
+                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                        
                     </ItemTemplate>
                 </asp:TemplateField>
                  <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
                 
               </Columns>
-            <RowStyle Height="5px" />
+            
         </asp:GridView>
 
              <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 51px; position: absolute; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
-            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView">
+            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" >
             <Columns>
                  
                  <asp:ImageField DataImageUrlField="ImageId" ShowHeader="False">
@@ -238,14 +249,14 @@
                  
                  <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                     
-                        <iframe src='<%# new Uri(Eval("VideoId").ToString()).AbsoluteUri %>'  width="320" " height="179" 
+                        
+
+                         
+                        
+                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" 
                             style="z-index: 100; left: 400px; top: 500px; position: absolute "></iframe>
                          
-                       <video width="320" height="179"   controls="controls">
-  <source src='<%# new Uri(Convert.ToString(Eval("VideoId"))).AbsoluteUri %>' type="video/mp4" style="z-index: -100; left: 400px; top: 500px; position: absolute ">
- 
-</video>
+                       
                                     
                    </ItemTemplate>
                 </asp:TemplateField>
@@ -295,7 +306,9 @@
 
         <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 273px; height: 280px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
-
+                    
+                        
+                    
              </asp:Panel>
         
         
