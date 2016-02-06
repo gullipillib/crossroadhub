@@ -24,7 +24,7 @@
             {
                 Response.Redirect("index.aspx");
             }
-            SqlDataSource1.SelectCommand = "SELECT UserName, SurName, Imagefile FROM [UserTable] where UserId = '" + Session["usercountervalue"] + "'";
+            SqlDataSource1.SelectCommand = "SELECT UserName, SurName, Imagefile FROM UserTable where UserId = '" + Session["usercountervalue"] + "'";
             DataView dv = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
             DataTable dt = new DataTable();
             dt = dv.ToTable();
@@ -35,6 +35,7 @@
                 ImageFileUrl = dt.Rows[0].Field<string>("ImageFile"); //usethis to get field value       
                 
             }
+            SqlDataSource2.SelectCommand = "SELECT UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserTable.UserId = '" + UserId + "' and UserDataTable.Category = 'General')";
         }
     }
 
@@ -123,7 +124,8 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             SelectCommand="SELECT [Imagefile], [UserName], [SurName] FROM [UserTable]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
-            SelectCommand="SELECT [UserId], [ImageId], [VideoId], [PostId], [Dated], [Reported], [PostMatter] FROM [UserDataTable] where UserId='1'"></asp:SqlDataSource>
+            
+            SelectCommand="SELECT UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.Category, UserDataTable.ImageId, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserTable.UserId = '1')"></asp:SqlDataSource>
         
         
         
@@ -131,15 +133,19 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 630px; top: 4px; position: absolute; width: 360px; " 
             BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" Height="35px" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
-                <asp:TemplateField>
+               
+                <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                    
-                            <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
-                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                         
                         
-                        
-                    </ItemTemplate>
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
+                         
+                       
+                                    
+                   </ItemTemplate>
+                     
                 </asp:TemplateField>
+
                 <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
                 <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
                 <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
@@ -154,14 +160,19 @@
             BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
                
-                 <asp:TemplateField>
+                 
+               <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
-                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                         
                         
-                    </ItemTemplate>
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
+                         
+                       
+                                    
+                   </ItemTemplate>
+                     
                 </asp:TemplateField>
-               
+
                 <asp:BoundField DataField="UserName" SortExpression="UserName" HeaderText="UserName" />
                 <asp:BoundField DataField="SurName" HeaderText="SurName" SortExpression="SurName" />
             <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
@@ -181,15 +192,18 @@
              <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 11px; top: 10px; position: absolute; width: 30px; height: 30px;" 
             BackColor="Transparent"  GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
             <Columns>
-                 <asp:TemplateField>
+                 
+                <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
-                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
+                         
                         
-                    </ItemTemplate>
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
+                         
+                       
+                                    
+                   </ItemTemplate>
+                     
                 </asp:TemplateField>
-                 <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
-                
               </Columns>
             <RowStyle Height="5px" />
         </asp:GridView>
@@ -220,45 +234,66 @@
          <asp:Panel ID="PanelGeneral" runat="server" BackColor="White" style="overflow:auto; z-index: 1; left: 158px; top: 238px; position: absolute; width: 676px; height: 543px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None" ScrollBars="Vertical">
              
-                <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" style="z-index: 1; left: 11px; top: 10px; position: absolute; width: 30px; height: 30px;" 
-            BackColor="Transparent"  GridLines="None" PageSize="1" ShowHeader="False" CellPadding="0">
-            <Columns>
-                 <asp:TemplateField>
-                    <ItemTemplate>
-                          <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" 
-                            style="z-index: 100; left: 0px; top: 0px; position: absolute "></iframe>
-                        
-                    </ItemTemplate>
-                </asp:TemplateField>
-                 <asp:BoundField DataField="Imagefile" HeaderText="Imagefile" ShowHeader="False" SortExpression="Imagefile" Visible="False" />
-                
-              </Columns>
-            
-        </asp:GridView>
-
+               
              <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 51px; position: absolute; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
             BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" >
             <Columns>
                  
-                 <asp:ImageField DataImageUrlField="ImageId" ShowHeader="False">
-                 </asp:ImageField>
-                 
-                 <asp:BoundField DataField="Dated" HeaderText="Dated" ShowHeader="False" SortExpression="Dated" />
-                 
-                 <asp:BoundField DataField="PostMatter" HeaderText="PostMatter" ShowHeader="False" SortExpression="PostMatter" />
-                 
                  <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
-                        
-
                          
                         
-                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" 
-                            style="z-index: 100; left: 400px; top: 500px; position: absolute "></iframe>
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
                          
                        
                                     
                    </ItemTemplate>
+                     
+                </asp:TemplateField>
+                
+               
+                 <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
+                    <ItemTemplate>
+                         
+                        
+                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" ></iframe>
+                         
+                       
+                                    
+                   </ItemTemplate>
+                     
+                </asp:TemplateField>
+
+                 
+                 
+                 <asp:BoundField DataField="Dated" HeaderText="Dated" ShowHeader="False" SortExpression="Dated" >
+                 
+                 <ItemStyle Font-Names="Arial" Font-Size="9pt" ForeColor="#CCCCCC" />
+                </asp:BoundField>
+                 
+                 <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" >
+                 
+                 <ItemStyle Font-Names="Arial Black" Font-Size="10pt" ForeColor="#000099" />
+                </asp:BoundField>
+                 
+                 <asp:BoundField DataField="SurName" SortExpression="SurName" HeaderText="SurName" >
+                <ItemStyle Font-Names="Arial Black" Font-Size="10pt" ForeColor="#000099" />
+                </asp:BoundField>
+                <asp:BoundField DataField="PostMatter" HeaderText="PostMatter" SortExpression="PostMatter" ShowHeader="False" >
+
+                 <ItemStyle Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" />
+                </asp:BoundField>
+
+                 <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
+                    <ItemTemplate>
+                         
+                        
+                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" ></iframe>
+                         
+                       
+                                    
+                   </ItemTemplate>
+                     <ItemStyle VerticalAlign="Bottom" />
                 </asp:TemplateField>
                  
                 
@@ -274,37 +309,18 @@
 
              </asp:Panel>
         
-        <asp:Panel ID="PanelPrayers" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" ScrollBars="Vertical">
+         <asp:Panel ID="Panel6" runat="server" BackColor="White" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 350px; height: 290px" Visible="True" Direction="LeftToRight" 
+            BorderStyle="None" >
 
-             </asp:Panel>
-        
-        <asp:Panel ID="PanelTestimonials" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" ScrollBars="Vertical">
+                 <!-- Begin BidVertiser code -->
+<script src="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760113" type="text/javascript"></script>
+<!-- End BidVertiser code --> 
 
-             </asp:Panel>
-        
-        <asp:Panel ID="PanelChruch" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" ScrollBars="Vertical">
+              </asp:Panel>
+                    
 
-             </asp:Panel>
 
-        <asp:Panel ID="PanelSongs" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" ScrollBars="Vertical">
-
-             </asp:Panel>
-
-        <asp:Panel ID="PanelWorship" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" ScrollBars="Vertical">
-
-             </asp:Panel>
-        
-        <asp:Panel ID="PanelEvents" runat="server" BackColor="White" style="z-index: 1; left: 158px; top: 68px; position: absolute; width: 676px; height: 159px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" ScrollBars="Vertical" >
-
-             </asp:Panel>
-
-        <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 273px; height: 280px" Visible="True" Direction="LeftToRight" 
+        <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 896px; top: 368px; position: absolute; width: 273px; height: 280px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
                     
                         
