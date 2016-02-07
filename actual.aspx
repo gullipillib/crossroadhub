@@ -313,7 +313,7 @@
             BorderStyle="None" >
 
                  <!-- Begin BidVertiser code -->
-<script src="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760113" type="text/javascript"></script>
+<SCRIPT SRC="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760519" TYPE="text/javascript"></SCRIPT>
 <!-- End BidVertiser code --> 
 
               </asp:Panel>
