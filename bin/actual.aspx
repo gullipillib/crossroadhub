@@ -35,7 +35,7 @@
                 ImageFileUrl = dt.Rows[0].Field<string>("ImageFile"); //usethis to get field value       
                 
             }
-            SqlDataSource2.SelectCommand = "SELECT UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserTable.UserId = '" + UserId + "' and UserDataTable.Category = 'General')";
+            SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General')";
         }
     }
 
@@ -66,6 +66,7 @@
 
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:Label ID="Label1" runat="server" BackColor="#000099" Style="position: absolute; height: 49px; width: 1459px; top: -1px; left: 14px; z-index: -1;"></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server" Style="z-index: 1; left: 107px; top: 9px; position: absolute; height: 27px; width:369px; " ToolTip="search friends"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Style="cursor: pointer; top: 13px; left: 494px; position: absolute; height: 26px; width: 56px" Text="Search" BackColor="#0066FF" ForeColor="White" 
@@ -235,67 +236,29 @@
             BorderStyle="None" ScrollBars="Vertical">
              
                
-             <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 51px; position: absolute; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
-            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" >
+             <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 0px; position: relative; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
+            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" PagerStyle-VerticalAlign="Top" RowStyle-VerticalAlign="Top">
             <Columns>
                  
+
                  <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
                          
+                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("Dated") %>' style="position: relative; top:0px; left:0px;" Font-Size="9" ForeColor="Gray" Font-Names="arial"></asp:Label>
+                        <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50"  style="position: relative; top:0px; left:50px;"></iframe>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("UserName") %>' style="position: relative; top:0px; left:55px;" Font-Names="arial" Font-Size="11" ForeColor="#0000CC"></asp:Label>
+                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("SurName") %>' style="position: relative; top:0px; left:100px;" Font-Size="11" Font-Names="arial" ForeColor="#0000CC"></asp:Label>
                         
-                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("PostMatter") %>' style="position: relative; top:60px; left:-150px;" ForeColor="#666666" Font-Size="13" Font-Names="arial"></asp:Label>
+
+                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" style="position: relative; top:150px; left:0px;" ></iframe>
+                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" style="position: relative; top:150px; left:300px;"></iframe>
                          
                        
                                     
                    </ItemTemplate>
-                     
-                </asp:TemplateField>
+                      </asp:TemplateField> 
                 
-               
-                 <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
-                    <ItemTemplate>
-                         
-                        
-                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" ></iframe>
-                         
-                       
-                                    
-                   </ItemTemplate>
-                     
-                </asp:TemplateField>
-
-                 
-                 
-                 <asp:BoundField DataField="Dated" HeaderText="Dated" ShowHeader="False" SortExpression="Dated" >
-                 
-                 <ItemStyle Font-Names="Arial" Font-Size="9pt" ForeColor="#CCCCCC" />
-                </asp:BoundField>
-                 
-                 <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" >
-                 
-                 <ItemStyle Font-Names="Arial Black" Font-Size="10pt" ForeColor="#000099" />
-                </asp:BoundField>
-                 
-                 <asp:BoundField DataField="SurName" SortExpression="SurName" HeaderText="SurName" >
-                <ItemStyle Font-Names="Arial Black" Font-Size="10pt" ForeColor="#000099" />
-                </asp:BoundField>
-                <asp:BoundField DataField="PostMatter" HeaderText="PostMatter" SortExpression="PostMatter" ShowHeader="False" >
-
-                 <ItemStyle Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" />
-                </asp:BoundField>
-
-                 <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
-                    <ItemTemplate>
-                         
-                        
-                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" ></iframe>
-                         
-                       
-                                    
-                   </ItemTemplate>
-                     <ItemStyle VerticalAlign="Bottom" />
-                </asp:TemplateField>
-                 
                 
                  
               </Columns>
@@ -313,7 +276,7 @@
             BorderStyle="None" >
 
                  <!-- Begin BidVertiser code -->
-<script src="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760113" type="text/javascript"></script>
+<SCRIPT SRC="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760519" TYPE="text/javascript"></SCRIPT>
 <!-- End BidVertiser code --> 
 
               </asp:Panel>
