@@ -42,6 +42,10 @@
 
     protected void Button16_Click(object sender, EventArgs e)
     {
+       if(TextBox3.Text != "" && TextBox3.Text.Contains("youtube"))
+       {
+           TextBox3.Text = TextBox3.Text + "?autoplay=1&loop=1";
+       }
         SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter, Category) Values ('" + UserId + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "', '" + DropDownList1.SelectedValue  + "')";
         SqlDataSource2.Insert();
                 
