@@ -42,13 +42,21 @@
 
     protected void Button16_Click(object sender, EventArgs e)
     {
-       if(TextBox3.Text != "" && TextBox3.Text.Contains("youtube"))
+       if(TextBox2.Text != "" && TextBox3.Text != "" && TextBox4.Text != "" )
+       { 
+        if(TextBox3.Text != "" && TextBox3.Text.Contains("youtube"))
        {
            TextBox3.Text = TextBox3.Text + "?autoplay=1&loop=1";
        }
         SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter, Category) Values ('" + UserId + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "', '" + DropDownList1.SelectedValue  + "')";
         SqlDataSource2.Insert();
-                
+        Label5.Text = "post successful";
+       }  
+       else
+       {
+           Label5.Text = "post not successful";
+
+       }     
     }
     
     
@@ -288,6 +296,8 @@
                  ToolTip="The Url to your Photo on the internet or youtube or onedrive"></asp:TextBox>
         <asp:Label ID="Label2" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 122px; left: 24px; z-index: 0;" Font-Names="Arial">֍</asp:Label>
             <asp:Label ID="Label3" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 82px; left: 27px; z-index: 0;" Font-Names="Arial">௹</asp:Label>
+        <asp:Label ID="Label5" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 92px; left: 567px; z-index: 0;" Font-Names="Arial" Font-Size="8pt" 
+                 ForeColor="#999999">௹</asp:Label>
         
             <asp:DropDownList ID="DropDownList1" runat="server" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1; left: 497px; top: 126px; position: absolute">
                 <asp:ListItem>General</asp:ListItem>
@@ -305,22 +315,22 @@
              
                
              <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 0px; position: relative; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
-            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" PagerStyle-VerticalAlign="Top" RowStyle-VerticalAlign="Top" RowStyle-Height="300" CellSpacing="60">
+            BackColor="Transparent"  GridLines="None" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" PagerStyle-VerticalAlign="Top" RowStyle-VerticalAlign="Top" RowStyle-Height="300" CellSpacing="60" PagerStyle-Height="400">
             <Columns>
                  
 
                  <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
                          
-                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("Dated") %>' style="position: relative; top:0px; left:0px;" Font-Size="9" ForeColor="Gray" Font-Names="arial"></asp:Label>
-                        <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50"  style="position: relative; top:0px; left:50px;"></iframe>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("UserName") %>' style="position: relative; top:0px; left:55px;" Font-Names="arial" Font-Size="11" ForeColor="#0000CC"></asp:Label>
-                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("SurName") %>' style="position: relative; top:0px; left:100px;" Font-Size="11" Font-Names="arial" ForeColor="#0000CC"></asp:Label>
+                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("Dated") %>' style="position: relative; top:0px; left:90px;" Font-Size="9" ForeColor="Gray" Font-Names="arial"></asp:Label>
+                        <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50"  style="position: relative; top:90px; left:50px;"></iframe>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("UserName") %>' style="position: relative; top:90px; left:55px;" Font-Names="arial" Font-Size="11" ForeColor="#0000CC"></asp:Label>
+                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("SurName") %>' style="position: relative; top:90px; left:100px;" Font-Size="11" Font-Names="arial" ForeColor="#0000CC"></asp:Label>
                         
-                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("PostMatter") %>' style="position: relative; top:60px; left:-150px;" ForeColor="#666666" Font-Size="13" Font-Names="arial"></asp:Label>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("PostMatter") %>' style="position: relative; top:120px; left:-150px;" ForeColor="#666666" Font-Size="13" Font-Names="arial"></asp:Label>
 
-                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" style="position: relative; top:150px; left:0px;" ></iframe>
-                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" style="position: relative; top:150px; left:300px;"></iframe>
+                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" style="position: relative; top:250px; left:0px;" ></iframe>
+                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" style="position: relative; top:250px; left:300px;"></iframe>
                          
                        
                                     
@@ -331,7 +341,7 @@
                  
               </Columns>
             
-                 <PagerStyle VerticalAlign="Top" />
+                 <PagerStyle VerticalAlign="Top" Wrap="False" />
                  <RowStyle Height="410px" VerticalAlign="Top" />
             
         </asp:GridView>
