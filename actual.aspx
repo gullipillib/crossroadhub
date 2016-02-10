@@ -35,7 +35,7 @@
                 ImageFileUrl = dt.Rows[0].Field<string>("ImageFile"); //usethis to get field value       
                 
             }
-            SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General')";
+            SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General') order by Dated DESC";
         }
     }
 
@@ -59,6 +59,43 @@
     }
 
 
+
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General') order by Dated DESC";
+
+    }
+
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'Prayers') order by Dated DESC";
+
+    }
+
+    protected void Button12_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'Events') order by Dated DESC";
+
+    }
+
+    protected void Button10_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'Songs') order by Dated DESC";
+
+    }
+
+    protected void Button9_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'Church') order by Dated DESC";
+
+    }
+
+    protected void Button8_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'Testimonials') order by Dated DESC";
+
+    }
+
    
 </script>
 
@@ -71,6 +108,54 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server"   UpdateMode="Conditional">
+		<ContentTemplate>
+			<fieldset style="border:none;">
+				<asp:Button ID="Button5" runat="server" Text="Home" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1000; left: 981px; top: 12px; position: absolute" 
+            BackColor="Transparent" BorderStyle="None" />
+        <asp:Button ID="Button4" runat="server" Text="۩" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1000; left: 1041px; top: 12px; position: absolute" ToolTip="Friends Requests" 
+            BackColor="Transparent" BorderStyle="None" />
+        <asp:Button ID="Button2" runat="server" Text="۝" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1000; left: 1070px; top: 12px; position: absolute" ToolTip="Messages" 
+            BackColor="Transparent" BorderStyle="None" />
+        <asp:Button ID="Button3" runat="server" Text="۞" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1097px; top: 12px; position: absolute" ToolTip="Notifications" 
+            BackColor="Transparent" BorderStyle="None" />
+        <asp:Button ID="Button6" runat="server" Text="▼" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1154px; top: 15px; position: absolute"  
+            BackColor="Transparent" BorderStyle="None" />
+                <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 227px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button7_Click" />
+                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 252px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button8_Click" />
+                <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 19px; top: 272px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button9_Click" />
+                <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 302px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button10_Click" />
+                <asp:Button ID="Button11" runat="server" Text="Worship" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 342px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" />
+                <asp:Button ID="Button12" runat="server" Text="Events" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 382px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" />
+                <asp:Button ID="Button16" runat="server" Style="z-index:1000; cursor: pointer; top: 192px; left: 768px; position: absolute; height: 26px; width: 56px" Text="Post" BackColor="#0066FF" ForeColor="White" 
+                 OnClick="Button16_Click"/>
+			
+			</fieldset>
+            </ContentTemplate>
+	
+
+		<Triggers>
+			<asp:AsyncPostBackTrigger ControlID="Button7" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button7" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button8" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button9" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button10" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button11" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button12" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="Button16" EventName="Click" />
+            </Triggers>
+	
+		
+			
+		</asp:UpdatePanel>
+
         <asp:Label ID="Label1" runat="server" BackColor="#000099" Style="position: absolute; height: 49px; width: 1459px; top: -1px; left: 14px; z-index: -1;"></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server" Style="z-index: 1; left: 107px; top: 9px; position: absolute; height: 27px; width:369px; " ToolTip="search friends"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Style="cursor: pointer; top: 13px; left: 494px; position: absolute; height: 26px; width: 56px" Text="Search" BackColor="#0066FF" ForeColor="White" 
@@ -86,18 +171,7 @@
         <asp:Panel ID="Panel2" runat="server" BackColor="Transparent" style="z-index: 30; left: 18px; top: 184px; position: absolute; width: 125px; height: 220px" Visible="true" Direction="LeftToRight" 
             BorderStyle="None">
             
-                 <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 27px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
-                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 1px; top: 62px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
-                <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 92px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
-                <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 122px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
-                <asp:Button ID="Button11" runat="server" Text="Worship" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 152px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
-                <asp:Button ID="Button12" runat="server" Text="Events" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 192px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
+                 
                 <asp:Label ID="Label10" runat="server" BackColor="Transparent" Style="position: absolute; height: 25px; width: 100px; top: -1px; left: 5px; z-index: -1;" Text="ACTIVITIES" Font-Size="10pt" 
                      ForeColor="#666666" Font-Names="Courier New"></asp:Label>
         </asp:Panel>
@@ -113,16 +187,7 @@
                     BackColor="Transparent" BorderStyle="None" />
          </asp:Panel>
 
-        <asp:Button ID="Button5" runat="server" Text="Home" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1; left: 981px; top: 12px; position: absolute" 
-            BackColor="Transparent" BorderStyle="None" />
-        <asp:Button ID="Button4" runat="server" Text="۩" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1; left: 1041px; top: 12px; position: absolute" ToolTip="Friends Requests" 
-            BackColor="Transparent" BorderStyle="None" />
-        <asp:Button ID="Button2" runat="server" Text="۝" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1; left: 1070px; top: 12px; position: absolute" ToolTip="Messages" 
-            BackColor="Transparent" BorderStyle="None" />
-        <asp:Button ID="Button3" runat="server" Text="۞" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1; left: 1097px; top: 12px; position: absolute" ToolTip="Notifications" 
-            BackColor="Transparent" BorderStyle="None" />
-        <asp:Button ID="Button6" runat="server" Text="▼" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1; left: 1154px; top: 15px; position: absolute"  
-            BackColor="Transparent" BorderStyle="None" />
+        
 
 
        
@@ -213,8 +278,7 @@
             <RowStyle Height="5px" />
         </asp:GridView>
         <asp:TextBox ID="TextBox2" runat="server" Style="z-index: 1; left: 67px; top: 19px; position: absolute; height: 27px; width:369px; "></asp:TextBox>
-        <asp:Button ID="Button16" runat="server" Style="cursor: pointer; top: 123px; left: 609px; position: absolute; height: 26px; width: 56px" Text="Post" BackColor="#0066FF" ForeColor="White" 
-                 OnClick="Button16_Click"/>
+        
             <asp:Button ID="Button18" runat="server" Text="Image" Font-Names="Arial" Font-Size="9" ForeColor="#999999" style="z-index: 1; left: 57px; top: 78px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" ToolTip="Image File" />
         <asp:TextBox ID="TextBox3" runat="server" Style="z-index: 1; left: 117px; top: 69px; position: absolute; height: 27px; width:369px; " ToolTip="The Url to your Photo on the internet or youtube or onedrive"></asp:TextBox>
@@ -241,7 +305,7 @@
              
                
              <asp:GridView ID="GridView5" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" style="border-style: None; z-index: 1; left: 8px; top: 0px; position: relative; direction: ltr; overflow-y: scroll; width: 649px; height: 1642px; background-color: White;" 
-            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" PagerStyle-VerticalAlign="Top" RowStyle-VerticalAlign="Top">
+            BackColor="Transparent"  GridLines="Horizontal" PageSize="100000" ShowHeader="False" CellPadding="0" DataMember="DefaultView" PagerStyle-VerticalAlign="Top" RowStyle-VerticalAlign="Top" RowStyle-Height="300" CellSpacing="60">
             <Columns>
                  
 
@@ -267,6 +331,9 @@
                  
               </Columns>
             
+                 <PagerStyle VerticalAlign="Top" />
+                 <RowStyle Height="410px" VerticalAlign="Top" />
+            
         </asp:GridView>
 
            
@@ -276,7 +343,7 @@
 
              </asp:Panel>
         
-         <asp:Panel ID="Panel6" runat="server" BackColor="White" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 350px; height: 290px" Visible="True" Direction="LeftToRight" 
+         <asp:Panel ID="Panel6" runat="server" BackColor="Transparent" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 350px; height: 290px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
 
                  <!-- Begin BidVertiser code -->
