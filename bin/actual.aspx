@@ -51,6 +51,9 @@
         SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter, Category) Values ('" + UserId + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "', '" + DropDownList1.SelectedValue  + "')";
         SqlDataSource2.Insert();
         Label5.Text = "post successful";
+        TextBox2.Text = "";
+        TextBox3.Text = "";
+        TextBox4.Text = "";       
        }  
        else
        {
@@ -104,7 +107,17 @@
 
     }
 
-   
+
+    protected void Button5_Click1(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General') order by Dated DESC";
+
+    }
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("index.aspx");
+    }
 </script>
 
     
@@ -115,11 +128,7 @@
 
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server"   UpdateMode="Conditional">
-		<ContentTemplate>
-			<fieldset style="border:none;">
+       
 				<asp:Button ID="Button5" runat="server" Text="Home" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1000; left: 981px; top: 12px; position: absolute" 
             BackColor="Transparent" BorderStyle="None" />
         <asp:Button ID="Button4" runat="server" Text="۩" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1000; left: 1041px; top: 12px; position: absolute" ToolTip="Friends Requests" 
@@ -129,14 +138,14 @@
         <asp:Button ID="Button3" runat="server" Text="۞" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1097px; top: 12px; position: absolute" ToolTip="Notifications" 
             BackColor="Transparent" BorderStyle="None" />
         <asp:Button ID="Button6" runat="server" Text="▼" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1154px; top: 15px; position: absolute"  
-            BackColor="Transparent" BorderStyle="None" />
+            BackColor="Transparent" BorderStyle="None" ToolTip="Logout" />
                 <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 227px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button7_Click" />
-                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 252px; position: absolute" 
+                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 255px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button8_Click" />
-                <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 19px; top: 272px; position: absolute" 
+                <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 19px; top: 275px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button9_Click" />
-                <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 302px; position: absolute" 
+                <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 305px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button10_Click" />
                 <asp:Button ID="Button11" runat="server" Text="Worship" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 342px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" />
@@ -145,25 +154,7 @@
                 <asp:Button ID="Button16" runat="server" Style="z-index:1000; cursor: pointer; top: 192px; left: 768px; position: absolute; height: 26px; width: 56px" Text="Post" BackColor="#0066FF" ForeColor="White" 
                  OnClick="Button16_Click"/>
 			
-			</fieldset>
-            </ContentTemplate>
-	
-
-		<Triggers>
-			<asp:AsyncPostBackTrigger ControlID="Button7" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button7" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button8" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button9" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button10" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button11" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button12" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="Button16" EventName="Click" />
-            </Triggers>
-	
-		
 			
-		</asp:UpdatePanel>
-
         <asp:Label ID="Label1" runat="server" BackColor="#000099" Style="position: absolute; height: 49px; width: 1459px; top: -1px; left: 14px; z-index: -1;"></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server" Style="z-index: 1; left: 107px; top: 9px; position: absolute; height: 27px; width:369px; " ToolTip="search friends"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Style="cursor: pointer; top: 13px; left: 494px; position: absolute; height: 26px; width: 56px" Text="Search" BackColor="#0066FF" ForeColor="White" 
@@ -216,7 +207,7 @@
                     <ItemTemplate>
                          
                         
-                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="30"  height="30" ></iframe>
                          
                        
                                     
@@ -297,7 +288,7 @@
         <asp:Label ID="Label2" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 122px; left: 24px; z-index: 0;" Font-Names="Arial">֍</asp:Label>
             <asp:Label ID="Label3" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 82px; left: 27px; z-index: 0;" Font-Names="Arial">௹</asp:Label>
         <asp:Label ID="Label5" runat="server" BackColor="Transparent" Style="position: absolute; height: 20px; width: 20px; top: 92px; left: 567px; z-index: 0;" Font-Names="Arial" Font-Size="8pt" 
-                 ForeColor="#999999">௹</asp:Label>
+                 ForeColor="#999999"></asp:Label>
         
             <asp:DropDownList ID="DropDownList1" runat="server" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1; left: 497px; top: 126px; position: absolute">
                 <asp:ListItem>General</asp:ListItem>
@@ -327,10 +318,10 @@
                         <asp:Label ID="Label2" runat="server" Text='<%# Bind("UserName") %>' style="position: relative; top:90px; left:55px;" Font-Names="arial" Font-Size="11" ForeColor="#0000CC"></asp:Label>
                          <asp:Label ID="Label3" runat="server" Text='<%# Bind("SurName") %>' style="position: relative; top:90px; left:100px;" Font-Size="11" Font-Names="arial" ForeColor="#0000CC"></asp:Label>
                         
-                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("PostMatter") %>' style="position: relative; top:120px; left:-150px;" ForeColor="#666666" Font-Size="13" Font-Names="arial"></asp:Label>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("PostMatter") %>' style="position: relative; top:120px; left:0px;" ForeColor="#666666" Font-Size="13" Font-Names="arial"></asp:Label>
 
-                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" style="position: relative; top:250px; left:0px;" ></iframe>
-                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" style="position: relative; top:250px; left:300px;"></iframe>
+                         <iframe src='<%# new Uri(Eval("ImageId").ToString()) %>'  width="320"  height="240" style="position: relative; top:150px; left:0px;" ></iframe>
+                         <iframe src='<%# new Uri(Eval("VideoId").ToString()) %>'  width="320"  height="179" style="position: relative; top:150px; left:300px;"></iframe>
                          
                        
                                     

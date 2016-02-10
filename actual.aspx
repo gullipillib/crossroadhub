@@ -51,6 +51,9 @@
         SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter, Category) Values ('" + UserId + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "', '" + DropDownList1.SelectedValue  + "')";
         SqlDataSource2.Insert();
         Label5.Text = "post successful";
+        TextBox2.Text = "";
+        TextBox3.Text = "";
+        TextBox4.Text = "";       
        }  
        else
        {
@@ -104,7 +107,17 @@
 
     }
 
-   
+
+    protected void Button5_Click1(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General') order by Dated DESC";
+
+    }
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("index.aspx");
+    }
 </script>
 
     
@@ -125,14 +138,14 @@
         <asp:Button ID="Button3" runat="server" Text="۞" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1097px; top: 12px; position: absolute" ToolTip="Notifications" 
             BackColor="Transparent" BorderStyle="None" />
         <asp:Button ID="Button6" runat="server" Text="▼" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1154px; top: 15px; position: absolute"  
-            BackColor="Transparent" BorderStyle="None" />
+            BackColor="Transparent" BorderStyle="None" ToolTip="Logout" />
                 <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 227px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button7_Click" />
-                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 252px; position: absolute" 
+                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 255px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button8_Click" />
-                <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 19px; top: 272px; position: absolute" 
+                <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 19px; top: 275px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button9_Click" />
-                <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 302px; position: absolute" 
+                <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 305px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button10_Click" />
                 <asp:Button ID="Button11" runat="server" Text="Worship" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 342px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" />
@@ -194,7 +207,7 @@
                     <ItemTemplate>
                          
                         
-                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="50"  height="50" ></iframe>
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="30"  height="30" ></iframe>
                          
                        
                                     
