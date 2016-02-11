@@ -44,10 +44,21 @@
     {
        if(TextBox2.Text != "" && TextBox3.Text != "" && TextBox4.Text != "" )
        { 
+	
+        if(TextBox3.Text != "" && TextBox3.Text.Contains("youtu.be"))
+       	{
+		TextBox3.Text = TextBox3.Text.Replace("https://youtu.be","https://www.youtube.com/embed");
+	    }
         if(TextBox3.Text != "" && TextBox3.Text.Contains("youtube"))
        {
            TextBox3.Text = TextBox3.Text + "?autoplay=1&loop=1";
        }
+        if (TextBox4.Text != "" && TextBox4.Text.Contains("youtu.be"))
+        {
+            TextBox4.Text = TextBox4.Text.Replace("https://youtu.be", "https://www.youtube.com/embed");
+        }
+        
+           
         SqlDataSource2.InsertCommand = "INSERT INTO UserDataTable(UserId, ImageId, VideoId, PostId, Dated, Reported, PostMatter, Category) Values ('" + UserId + "', '" + TextBox3.Text + "',  '" + TextBox4.Text + "',  '" + TextBox2.Text + "',   '" + DateTime.Now.ToString() + "', 'no', '" + TextBox2.Text + "', '" + DropDownList1.SelectedValue  + "')";
         SqlDataSource2.Insert();
         Label5.Text = "post successful";
