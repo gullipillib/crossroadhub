@@ -44,6 +44,11 @@
     {
        if(TextBox2.Text != "" && TextBox3.Text != "" && TextBox4.Text != "" )
        { 
+	
+        if(TextBox3.Text != "" && TextBox3.Text.Contains("youtu.be"))
+       	{
+		TextBox3.Text = TextBox3.Text.Replace("https://youtu.be","https://www.youtube.com/embed");
+	}
         if(TextBox3.Text != "" && TextBox3.Text.Contains("youtube"))
        {
            TextBox3.Text = TextBox3.Text + "?autoplay=1&loop=1";
