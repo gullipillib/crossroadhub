@@ -140,8 +140,8 @@
 <body>
     <form id="form1" runat="server">
        
-				<asp:Button ID="Button5" runat="server" Text="Home" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="z-index: 1000; left: 981px; top: 12px; position: absolute" 
-            BackColor="Transparent" BorderStyle="None" />
+				<asp:Button ID="Button5" runat="server" Text="Home" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 981px; top: 12px; position: absolute" 
+            BackColor="Transparent" BorderStyle="None" OnClick="Button5_Click" />
         <asp:Button ID="Button4" runat="server" Text="۩" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1000; left: 1041px; top: 12px; position: absolute" ToolTip="Friends Requests" 
             BackColor="Transparent" BorderStyle="None" />
         <asp:Button ID="Button2" runat="server" Text="۝" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="z-index: 1000; left: 1070px; top: 12px; position: absolute" ToolTip="Messages" 
@@ -149,7 +149,7 @@
         <asp:Button ID="Button3" runat="server" Text="۞" Font-Names="Arial" Font-Size="12pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1097px; top: 12px; position: absolute" ToolTip="Notifications" 
             BackColor="Transparent" BorderStyle="None" />
         <asp:Button ID="Button6" runat="server" Text="▼" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1154px; top: 15px; position: absolute"  
-            BackColor="Transparent" BorderStyle="None" ToolTip="Logout" />
+            BackColor="Transparent" BorderStyle="None" ToolTip="Logout" OnClick="Button6_Click" />
                 <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 227px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button7_Click" />
                 <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 255px; position: absolute" 
