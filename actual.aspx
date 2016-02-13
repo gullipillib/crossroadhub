@@ -367,13 +367,18 @@
                     
 
 
-        <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 896px; top: 368px; position: absolute; width: 273px; height: 280px" Visible="True" Direction="LeftToRight" 
+        <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 896px; top: 368px; position: absolute; width: 350px; height: 280px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
                   <asp:Label ID="Label111" runat="server" BackColor="Transparent" Style="position: absolute; height: 49px; width: 200px; top: 0px; left: 0px; z-index: 100;"></asp:Label>
              
                     <asp:GridView ID="GridView7" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" style="z-index: 1; left: 0px; top: 4px; position: absolute; width: 269px; " 
-            BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" Height="35px" PageSize="1" ShowHeader="False" CellPadding="0" EnablePersistedSelection="True" SelectedRowStyle-BackColor="Transparent" SelectedRowStyle-ForeColor="Transparent">
+            BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" Height="35px" PageSize="1" ShowHeader="False" CellPadding="0" SelectedRowStyle-BackColor="Transparent" 
+                      SelectedRowStyle-ForeColor="Transparent">
             <Columns>
+               
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="UserName" HeaderText="UserName" ShowHeader="False" SortExpression="UserName" Visible="False" />
+                <asp:BoundField DataField="SurName" HeaderText="SurName" ShowHeader="False" SortExpression="SurName" Visible="False" />
                
                 <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
                     <ItemTemplate>
