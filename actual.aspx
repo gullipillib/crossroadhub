@@ -80,6 +80,11 @@
          
     }
 
+    protected void Button20_Click(object sender, EventArgs e)
+    {
+
+        Label111.Text = GridView7.SelectedDataKey[0].ToString() + "  " + GridView7.SelectedDataKey[1].ToString() + " added as friend";
+    }
 
 
     protected void Button5_Click(object sender, EventArgs e)
@@ -119,12 +124,6 @@
     }
 
 
-    protected void Button5_Click1(object sender, EventArgs e)
-    {
-        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'General') order by Dated DESC";
-
-    }
-
     protected void Button6_Click(object sender, EventArgs e)
     {
         Response.Redirect("index.aspx");
@@ -150,9 +149,9 @@
             BackColor="Transparent" BorderStyle="None" />
         <asp:Button ID="Button6" runat="server" Text="▼" Font-Names="Arial" Font-Size="9pt" ForeColor="#999999" style="cursor: pointer; z-index: 1000; left: 1154px; top: 15px; position: absolute"  
             BackColor="Transparent" BorderStyle="None" ToolTip="Logout" OnClick="Button6_Click" />
-                <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 227px; position: absolute" 
+                <asp:Button ID="Button7" runat="server" Text="Prayers" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 201px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button7_Click" />
-                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 255px; position: absolute" 
+                <asp:Button ID="Button8" runat="server" Text="Testimonials" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 11px; top: 238px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button8_Click" />
                 <asp:Button ID="Button9" runat="server" Text="Church" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 19px; top: 275px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button9_Click" />
@@ -206,7 +205,9 @@
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             
             SelectCommand="SELECT UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.Category, UserDataTable.ImageId, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserTable.UserId = '1')"></asp:SqlDataSource>
-        
+         <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
+            SelectCommand="SELECT [Imagefile], [UserName], [SurName], [FriendRequests], [UserId]  FROM [UserTable]"></asp:SqlDataSource>
+       
         
         
 
@@ -368,8 +369,35 @@
 
         <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 896px; top: 368px; position: absolute; width: 273px; height: 280px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
-                    
+                  <asp:Label ID="Label111" runat="server" BackColor="Transparent" Style="position: absolute; height: 49px; width: 200px; top: 0px; left: 0px; z-index: 100;"></asp:Label>
+             
+                    <asp:GridView ID="GridView7" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" style="z-index: 1; left: 0px; top: 4px; position: absolute; width: 269px; " 
+            BackColor="Transparent" Font-Size="10pt" ForeColor="White" GridLines="None" Height="35px" PageSize="1" ShowHeader="False" CellPadding="0" EnablePersistedSelection="True" SelectedRowStyle-BackColor="Transparent" SelectedRowStyle-ForeColor="Transparent">
+            <Columns>
+               
+                <asp:TemplateField ConvertEmptyStringToNull="False" ShowHeader="False" ValidateRequestMode="Disabled">
+                    <ItemTemplate>
+                         
                         
+                         <iframe src='<%# new Uri(Eval("Imagefile").ToString()) %>'  width="30"  height="30" ></iframe>
+                        <asp:Label ID="Label22" runat="server" Text='<%# Bind("UserName") %>' style="position: relative; top:0px; left:0px;" Font-Names="arial" Font-Size="8" ForeColor="#0000CC"></asp:Label>
+                         <asp:Label ID="Labe33" runat="server" Text='<%# Bind("SurName") %>' style="position: relative; top:0px; left:40px;" Font-Size="8" Font-Names="arial" ForeColor="#0000CC"></asp:Label>
+                         <asp:Button ID="Button20" runat="server" Text="Add Friend" Font-Names="Arial" Font-Size="9" ForeColor="#999999" style="z-index: 1; left: 100px; top: 0px; position: relative" 
+                    BackColor="Transparent" BorderStyle="None" ToolTip="Add Friend" OnClick="Button20_Click" />
+                    
+                                    
+                   </ItemTemplate>
+                     
+                </asp:TemplateField>
+
+                
+                
+
+                
+            </Columns>
+            <RowStyle Height="5px" />
+                        <SelectedRowStyle BackColor="Transparent" />
+        </asp:GridView>    
                     
              </asp:Panel>
         
