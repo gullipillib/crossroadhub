@@ -170,6 +170,12 @@
         SqlDataSource1.UpdateCommand = "update UserTable set Imagefile='" + TextBox5.Text + "' where UserId='" + UserId + "'";
         SqlDataSource1.Update();
     }
+
+    protected void Button11_Click(object sender, EventArgs e)
+    {
+        SqlDataSource2.SelectCommand = "SELECT Top 25 UserTable.UserId, UserTable.Imagefile, UserTable.UserName, UserTable.SurName, UserTable.UserId AS Expr1, UserDataTable.ImageId, UserDataTable.Category, UserDataTable.VideoId, UserDataTable.PostId, UserDataTable.Dated, UserDataTable.Reported, UserDataTable.PostMatter FROM UserTable CROSS JOIN UserDataTable WHERE (UserDataTable.Category = 'Worship') order by Dated DESC";
+
+    }
 </script>
 
     
@@ -210,7 +216,7 @@
                 <asp:Button ID="Button10" runat="server" Text="Songs" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 305px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" OnClick="Button10_Click" />
                 <asp:Button ID="Button11" runat="server" Text="Worship" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 342px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button11_Click" />
                 <asp:Button ID="Button12" runat="server" Text="Events" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="cursor: pointer; z-index: 1000; left: 21px; top: 382px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" />
                 <asp:Button ID="Button16" runat="server" Style="z-index:1000; cursor: pointer; top: 192px; left: 768px; position: absolute; height: 26px; width: 56px" Text="Post" BackColor="#0066FF" ForeColor="White" 
@@ -358,7 +364,7 @@
                 <asp:ListItem>General</asp:ListItem>
                 <asp:ListItem>Prayers</asp:ListItem>
                 <asp:ListItem>Testimonials</asp:ListItem>
-                <asp:ListItem>Chruch</asp:ListItem>
+                <asp:ListItem>Church</asp:ListItem>
                 <asp:ListItem>Songs</asp:ListItem>
                 <asp:ListItem>Worship</asp:ListItem>
                 <asp:ListItem>Events</asp:ListItem>
@@ -408,16 +414,16 @@
 
              </asp:Panel>
         
-         <asp:Panel ID="Panel6" runat="server" BackColor="White" style="z-index: 1; left: 0px; top: 10px; position: absolute; width: 0px; height: 0px" Visible="True" Direction="LeftToRight" 
+         <asp:Panel ID="Panel6" runat="server" BackColor="White" style="z-index: 1; left: 883px; top: 60px; position: absolute; width: 363px; height: 285px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
 
                  <!-- Begin BidVertiser code -->
-<SCRIPT SRC="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760519" TYPE="text/javascript"></SCRIPT>
+<script src="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760519" TYPE="text/javascript"></script>
 <!-- End BidVertiser code --> 
 
               </asp:Panel>
 
-        <asp:Panel ID="Panel7" runat="server" BackColor="Transparent" style="z-index: 1; left: 1046px; top: 668px; position: absolute; width: 83px; height: 76px" Visible="True" Direction="LeftToRight" 
+        <asp:Panel ID="Panel7" runat="server" BackColor="Transparent" style="z-index: 3000; left: 1046px; top: 668px; position: absolute; width: 83px; height: 76px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
                     
             <asp:ImageButton ID="ImageButton1" runat="server" Height="64px" ImageUrl="~/images/donate.png" OnClick="ImageButton1_Click" Width="67px" style="z-index: 1; left: 9px; top: 8px; position: absolute" />
@@ -425,8 +431,8 @@
             </asp:Panel>
                     
 
-         <asp:Panel ID="Panel8" runat="server" BackColor="White" style="z-index: 1; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None"  >
+         <asp:Panel ID="Panel8" runat="server" BackColor="White" style="z-index: 3000; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="Solid"  >
 
                  <asp:Button ID="Button19" runat="server" Text="X" Font-Names="Arial" Font-Size="15" ForeColor="#999999" style="cursor:pointer; z-index: 1; left: 827px; top: 5px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" ToolTip="Close" OnClick="Button19_Click"/>
@@ -445,8 +451,8 @@
 
              </asp:Panel>
 
-        <asp:Panel ID="Panel9" runat="server" BackColor="White" style="z-index: 1; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" >
+        <asp:Panel ID="Panel9" runat="server" BackColor="White" style="z-index: 3000; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="Solid" >
 
              <asp:Button ID="Button21" runat="server" Text="X" Font-Names="Arial" Font-Size="15" ForeColor="#999999" style="cursor:pointer; z-index: 1; left: 827px; top: 5px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" ToolTip="Close" OnClick="Button21_Click" />
@@ -458,7 +464,7 @@
             </asp:Panel>
 
          <asp:Panel ID="Panel10" runat="server" BackColor="White" style="z-index: 1; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
-            BorderStyle="None" >
+            BorderStyle="Solid" >
 
               <asp:Button ID="Button22" runat="server" Text="X" Font-Names="Arial" Font-Size="15" ForeColor="#999999" style="cursor:pointer; z-index: 1; left: 827px; top: 5px; position: absolute" 
                     BackColor="Transparent" BorderStyle="None" ToolTip="Close" OnClick="Button22_Click" />
