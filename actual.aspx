@@ -128,12 +128,64 @@
     {
         Response.Redirect("index.aspx");
     }
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        Panel8.Visible = true;
+    }
+
+    protected void Button19_Click(object sender, EventArgs e)
+    {
+        Panel8.Visible = false;
+    }
+
+    protected void Button13_Click(object sender, EventArgs e)
+    {
+        Panel8.Visible = true;
+    }
+
+    protected void Button14_Click(object sender, EventArgs e)
+    {
+        Panel9.Visible = true;
+    }
+
+
+    protected void Button21_Click(object sender, EventArgs e)
+    {
+        Panel9.Visible = false;
+    }
+
+    protected void Button22_Click(object sender, EventArgs e)
+    {
+        Panel10.Visible = false;
+    }
+
+    protected void Button15_Click(object sender, EventArgs e)
+    {
+        Panel10.Visible = true;
+    }
+
+    protected void Button23_Click(object sender, EventArgs e)
+    {
+        SqlDataSource1.UpdateCommand = "update UserTable set Imagefile='" + TextBox5.Text + "' where UserId='" + UserId + "'";
+        SqlDataSource1.Update();
+    }
 </script>
 
     
 <html>
 <head>
     <title>Cross Road Hub</title>
+    <style type="text/css">
+        .pm-button {
+            z-index: 1;
+            left: 0px;
+            top: 310px;
+            position: absolute;
+            height: 63px;
+            width: 856px;
+        }
+    </style>
 </head>
 
 <body>
@@ -191,9 +243,9 @@
                      ForeColor="#666666" Font-Names="Courier New"></asp:Label>
             
                  <asp:Button ID="Button13" runat="server" Text="Donate" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 11px; top: 30px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button13_Click" />
                 <asp:Button ID="Button14" runat="server" Text="Invite friends" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 1px; top: 62px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button14_Click" />
          </asp:Panel>
 
         
@@ -261,7 +313,7 @@
             <RowStyle Height="5px" />
         </asp:GridView>
              <asp:Button ID="Button15" runat="server" Text="Edit Profile" Font-Names="Arial" Font-Size="9" ForeColor="Black" style="z-index: 1; left: 1px; top: 83px; position: absolute" 
-                    BackColor="Transparent" BorderStyle="None" />
+                    BackColor="Transparent" BorderStyle="None" OnClick="Button15_Click" />
    
              </asp:Panel>
 
@@ -356,7 +408,7 @@
 
              </asp:Panel>
         
-         <asp:Panel ID="Panel6" runat="server" BackColor="Transparent" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 350px; height: 290px" Visible="True" Direction="LeftToRight" 
+         <asp:Panel ID="Panel6" runat="server" BackColor="White" style="z-index: 1; left: 0px; top: 10px; position: absolute; width: 0px; height: 0px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >
 
                  <!-- Begin BidVertiser code -->
@@ -364,8 +416,58 @@
 <!-- End BidVertiser code --> 
 
               </asp:Panel>
+
+        <asp:Panel ID="Panel7" runat="server" BackColor="Transparent" style="z-index: 1; left: 1046px; top: 668px; position: absolute; width: 83px; height: 76px" Visible="True" Direction="LeftToRight" 
+            BorderStyle="None" >
+                    
+            <asp:ImageButton ID="ImageButton1" runat="server" Height="64px" ImageUrl="~/images/donate.png" OnClick="ImageButton1_Click" Width="67px" style="z-index: 1; left: 9px; top: 8px; position: absolute" />
+
+            </asp:Panel>
                     
 
+         <asp:Panel ID="Panel8" runat="server" BackColor="White" style="z-index: 1; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None"  >
+
+                 <asp:Button ID="Button19" runat="server" Text="X" Font-Names="Arial" Font-Size="15" ForeColor="#999999" style="cursor:pointer; z-index: 1; left: 827px; top: 5px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" ToolTip="Close" OnClick="Button19_Click"/>
+
+                 <asp:Label ID="Label6" runat="server" BackColor="Transparent" Style="position: absolute; height: 45px; width: 814px; top: 52px; left: 19px; z-index: 0;" Font-Names="Arial" Font-Size="12pt" 
+                 ForeColor="#0000CC" Font-Bold="True">CrossRoadHub Donations - Church of God (Congregation of Hebron for Universal Rehabilitation of Christian Hope and Gospel Operation of Divinity) Ministries </asp:Label>
+
+                <asp:Label ID="Label7" runat="server" BackColor="Transparent" Style="position: absolute; height: 45px; width: 255px; top: 97px; left: 19px; z-index: 0;" Font-Names="Arial" Font-Size="8pt" 
+                 ForeColor="#0000CC" Font-Bold="True">Document No 13/iv/13 Sub Registrar of Kapra</asp:Label>
+
+                 <asp:Label ID="Label8" runat="server" BackColor="Transparent" Style="position: absolute; height: 45px; width: 814px; top: 132px; left: 19px; z-index: 0;" Font-Names="Arial" Font-Size="12pt" 
+                 ForeColor="#0000CC" Font-Bold="True">Build Churches, Establish Hospitals for Old Age, Orphanage.  Old age welfare programs, Develop Cottage and Small Scale Industry. Conduct Seminars  to educate citizens for better living</asp:Label>
+
+
+             <div class="pm-button"><a href="https://www.payumoney.com/paybypayumoney/#/108133"><img src="https://www.payumoney.com//media/images/payby_payumoney/buttons/213.png" /></a></div>
+
+             </asp:Panel>
+
+        <asp:Panel ID="Panel9" runat="server" BackColor="White" style="z-index: 1; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" >
+
+             <asp:Button ID="Button21" runat="server" Text="X" Font-Names="Arial" Font-Size="15" ForeColor="#999999" style="cursor:pointer; z-index: 1; left: 827px; top: 5px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" ToolTip="Close" OnClick="Button21_Click" />
+
+             <asp:Label ID="Label9" runat="server" BackColor="Transparent" Style="position: absolute; height: 45px; width: 814px; top: 132px; left: 19px; z-index: 0;" Font-Names="Arial" Font-Size="12pt" 
+                 ForeColor="#0000CC" Font-Bold="True">Invite Friends Using Facebook, Twitter or Email</asp:Label>
+
+
+            </asp:Panel>
+
+         <asp:Panel ID="Panel10" runat="server" BackColor="White" style="z-index: 1; left: 260px; top: 150px; position: absolute; width: 856px; height: 386px" Visible="False" Direction="LeftToRight" 
+            BorderStyle="None" >
+
+              <asp:Button ID="Button22" runat="server" Text="X" Font-Names="Arial" Font-Size="15" ForeColor="#999999" style="cursor:pointer; z-index: 1; left: 827px; top: 5px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" ToolTip="Close" OnClick="Button22_Click" />
+                  <asp:Button ID="Button23" runat="server" Text="Update Profile Image" Font-Names="Arial" Font-Size="9" ForeColor="#999999" style="z-index: 1; left: 117px; top: 138px; position: absolute" 
+                    BackColor="Transparent" BorderStyle="None" ToolTip="Image File" OnClick="Button23_Click" />
+        <asp:TextBox ID="TextBox5" runat="server" Style="z-index: 1; left: 117px; top: 69px; position: absolute; height: 27px; width:369px; " ToolTip="The Url to your Photo on the internet or youtube or onedrive"></asp:TextBox>
+       
+
+         </asp:Panel>
 
         <asp:Panel ID="PanelFriends" runat="server" BackColor="White" style="z-index: 1; left: 896px; top: 368px; position: absolute; width: 350px; height: 280px" Visible="True" Direction="LeftToRight" 
             BorderStyle="None" >

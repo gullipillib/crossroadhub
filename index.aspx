@@ -186,9 +186,6 @@
             SelectCommand="SELECT * FROM [UserTable]"></asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             SelectCommand="SELECT * FROM [UserCounterTable]"></asp:SqlDataSource>
-	
-	 
-
 
     </form>
 </body>
