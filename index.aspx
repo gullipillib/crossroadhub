@@ -187,15 +187,7 @@
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:db0c82a4d13fe24ad6baa8a59100e2d5e6ConnectionString %>"
             SelectCommand="SELECT * FROM [UserCounterTable]"></asp:SqlDataSource>
 	
-	 <asp:Panel ID="Panel6" runat="server" BackColor="Transparent" style="z-index: 1; left: 846px; top: 68px; position: absolute; width: 350px; height: 290px" Visible="True" Direction="LeftToRight" 
-            BorderStyle="None" >
-
-                 <!-- Begin BidVertiser code -->
-<SCRIPT SRC="http://bdv.bidvertiser.com/BidVertiser.dbm?pid=684725&bid=1760519" TYPE="text/javascript"></SCRIPT>
-<!-- End BidVertiser code --> 
-
-              </asp:Panel>
-                    
+	 
 
 
     </form>
