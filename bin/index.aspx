@@ -152,14 +152,19 @@
         <asp:Button ID="Button1" runat="server" Style="cursor: pointer; top: 42px; left: 1132px; position: absolute; height: 26px; width: 56px" Text="Log In" BackColor="#0066FF" ForeColor="White" 
             OnClick="Button1_Click" />
         <asp:Label ID="Label17" runat="server" Font-Names="Arial" Font-Size="9pt" Style="top: 138px; left: 970px; position: absolute; height: 23px; width: 239px" ForeColor="#339933"></asp:Label>
-
+        <asp:Label ID="Label20" runat="server" Font-Names="Arial" Font-Size="15pt" Style="top: 126px; left: 480px; position: absolute; height: 28px; width: 162px" Text="Android Version"></asp:Label>
         <asp:RadioButton ID="RadioButton1" runat="server" Style="z-index: 1; left: 792px; top: 512px; position: absolute; width: 55px; right: 381px;" Text="Male"
             OnCheckedChanged="RadioButton1_CheckedChanged" />
+
+
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="https://crossroadhub.apphb.com/crossroadhubmobile.apk" style="z-index: 1; left: 492px; top: 155px; position: absolute">Download Now</asp:HyperLink>
 
 
         <asp:Label ID="Label10" runat="server" BackColor="#99CCFF" Style="position: absolute; height: 488px; width: 1459px; top: 95px; left: -23px; z-index: -1;"></asp:Label>
 
         <asp:Image ID="Image2" runat="server" Style="top: 226px; left: 10px; position: absolute; width: 724px; height: 300px" ImageUrl="images/logo.jpg" />
+        <asp:Image ID="Image1" runat="server" Style="top: 124px; left: 323px; position: absolute; width: 125px; height: 93px" ImageUrl="images/Crossroadhub.jpg" />
+        
         <asp:Label ID="Label9" runat="server" Font-Size="10pt" ForeColor="Black" Style="z-index: 1; left: 775px; top: 174px; position: absolute; width: 109px" Text="Name"></asp:Label>
         <asp:Label ID="Label11" runat="server" Font-Size="10pt" ForeColor="Black" Style="z-index: 1; left: 1038px; top: 174px; position: absolute; width: 109px" Text="Surname"></asp:Label>
         <asp:Label ID="Label12" runat="server" Font-Size="10pt" ForeColor="Black" Style="z-index: 1; left: 775px; top: 258px; position: absolute; width: 109px" Text="Email"></asp:Label>
